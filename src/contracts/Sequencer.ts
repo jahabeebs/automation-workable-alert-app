@@ -61,21 +61,6 @@ export class Sequencer {
   }
 
   /**
-   * Retrieves the next workable jobs for the specified network within the given range.
-   * @param network The network address.
-   * @param startIndex The starting index of the range.
-   * @param endIndex The ending index of the range (exclusive).
-   * @returns A promise that resolves to an array of workable jobs.
-   */
-  async getNextJobs(
-    network: string,
-    startIndex: number,
-    endIndex: number,
-  ): Promise<{ job: string; canWork: boolean; args: string }[]> {
-    return this.contract.getNextJobs(network, startIndex, endIndex);
-  }
-
-  /**
    * Registers a callback function to be invoked when the specified event is emitted.
    * @param event The event name ('AddJob' or 'RemoveJob').
    * @param callback The callback function to be invoked.
