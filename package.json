@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Application interfacing with the Sequencer to find all instances of available jobs and alerts in Discord if a Maker job hasn't been worked for 10 blocks",
-  "main": "dist/index.mjs",
+  "main": "dist/index.cjs",
   "scripts": {
-    "build": "tsup src/index.ts --format esm --out-dir dist",
+    "build": "tsup src/index.ts --out-dir dist",
     "start": "node --no-warnings=ExperimentalWarning --loader ts-node/esm  src/index.ts",
     "test": "jest",
     "lint": "eslint 'src/**/*.{js,ts}'",

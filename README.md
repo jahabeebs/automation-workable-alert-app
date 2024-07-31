@@ -44,7 +44,7 @@ npm test
 
 1. Follow the steps mentioned in the local deployment instructions above to output a dist folder.
 
-2. Zip the contents of the dist folder + node_modules. Go to the AWS Management Console and navigate to the Lambda service.
+2. Zip the contents of the dist folder + node_modules (before zipping remove index.js and index.mjs to avoid CommonJS/ES6 collision issues). Go to the AWS Management Console and navigate to the Lambda service.
 
 3. Click on "Create Function" and choose "Author from scratch".
    
