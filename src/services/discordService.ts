@@ -4,9 +4,10 @@ import { errorHandler } from '../utils/errorHandler';
 
 class DiscordService {
   client!: Client;
+  readyPromise!: Promise<void>;
 
   constructor() {
-    this.initialize();
+    this.readyPromise = this.initialize();
   }
 
   /**
@@ -18,6 +19,11 @@ class DiscordService {
       const intent = new IntentsBitField(config.discordIntentValue);
       this.client = new Client({ intents: intent });
       await this.client.login(config.discordBotToken);
+      await new Promise<void>((resolve) => {
+        this.client.once('ready', () => {
+          resolve();
+        });
+      });
     } catch (error) {
       errorHandler(error);
       throw new Error('Failed to initialize Discord service');
@@ -31,7 +37,8 @@ class DiscordService {
    */
   async sendAlert(message: string) {
     try {
-      const channel = this.client.channels.cache.get(config.discordChannelId);
+      await this.readyPromise;
+      const channel = await this.client.channels.fetch(config.discordChannelId);
       if (!channel) {
         throw new Error('Channel not found');
       }

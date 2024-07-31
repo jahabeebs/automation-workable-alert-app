@@ -7,8 +7,8 @@ import { errorHandler } from '../utils/errorHandler';
 
 class EthereumService {
   provider!: JsonRpcProvider;
-  private sequencer!: Sequencer;
-  private lastWorkBlockNumbers: { [jobAddress: string]: number } = {};
+  sequencer!: Sequencer;
+  lastWorkBlockNumbers: { [jobAddress: string]: number } = {};
 
   constructor() {
     this.initialize();
